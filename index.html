@@ -1,12 +1,54 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Redirect RSVP</title>
-  <meta http-equiv="refresh" content="0; URL='https://docs.google.com/forms/d/e/1FAIpQLSeiCO4anvL6dxrfIkpUBcNgI5LHQQydno2BdCc4neMvsR79Og/viewform?usp=pp_url&entry.28774831=###nome###&entry.1146941185=###cognome###&entry.1966263563=###Email###'">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script>
+    (function () {
+      // Legge i parametri dalla query string
+      const qs = new URLSearchParams(window.location.search);
+      const nome = qs.get('nome') || '';
+      const cognome = qs.get('cognome') || '';
+      const email = qs.get('email') || '';
+
+      // Costruisce l'URL del Google Form con gli 'entry' GIUSTI
+      const base = 'https://docs.google.com/forms/d/e/1FAIpQLSeiCO4anvL6dxrfIkpUBcNgI5LHQQydno2BdCc4neMvsR79Og/viewform?usp=pp_url';
+      const url =
+        base +
+        '&entry.28774831=' + encodeURIComponent(nome) +
+        '&entry.1146941185=' + encodeURIComponent(cognome) +
+        '&entry.1966263563=' + encodeURIComponent(email);
+
+      // Redirect immediato
+      window.location.replace(url);
+    })();
+  </script>
+  <noscript>
+    <meta http-equiv="refresh" content="0; URL='https://docs.google.com/forms/d/e/1FAIpQLSeiCO4anvL6dxrfIkpUBcNgI5LHQQydno2BdCc4neMvsR79Og/viewform?usp=pp_url'">
+  </noscript>
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 40px; text-align: center; }
+  </style>
 </head>
 <body>
-  <p>Stai per essere reindirizzato al modulo di registrazione...</p>
-  <p>Se non vieni reindirizzato automaticamente, <a href="https://docs.google.com/forms/d/e/1FAIpQLSeiCO4anvL6dxrfIkpUBcNgI5LHQQydno2BdCc4neMvsR79Og/viewform?usp=pp_url&entry.28774831=###nome###&entry.1146941185=###cognome###&entry.1966263563=###Email###">clicca qui</a>.</p>
+  <p>Reindirizzamento al modulo in corso…</p>
+  <p>Se non vieni reindirizzato automaticamente, <a id="fallback" href="#">clicca qui</a>.</p>
+  <script>
+    // Aggiorna anche il link di fallback (utile se il blocco script è lento)
+    (function () {
+      const qs = new URLSearchParams(window.location.search);
+      const nome = qs.get('nome') || '';
+      const cognome = qs.get('cognome') || '';
+      const email = qs.get('email') || '';
+      const base = 'https://docs.google.com/forms/d/e/1FAIpQLSeiCO4anvL6dxrfIkpUBcNgI5LHQQydno2BdCc4neMvsR79Og/viewform?usp=pp_url';
+      const url =
+        base +
+        '&entry.28774831=' + encodeURIComponent(nome) +
+        '&entry.1146941185=' + encodeURIComponent(cognome) +
+        '&entry.1966263563=' + encodeURIComponent(email);
+      document.getElementById('fallback').setAttribute('href', url);
+    })();
+  </script>
 </body>
 </html>
