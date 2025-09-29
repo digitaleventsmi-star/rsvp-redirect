@@ -12,7 +12,7 @@
       const cognome = qs.get('cognome') || '';
       const email = qs.get('email') || '';
 
-      // Costruisce l'URL del Google Form con gli 'entry' GIUSTI
+      // Costruisce l'URL del Google Form con gli entry giusti
       const base = 'https://docs.google.com/forms/d/e/1FAIpQLSeiCO4anvL6dxrfIkpUBcNgI5LHQQydno2BdCc4neMvsR79Og/viewform?usp=pp_url';
       const url =
         base +
@@ -28,14 +28,18 @@
     <meta http-equiv="refresh" content="0; URL='https://docs.google.com/forms/d/e/1FAIpQLSeiCO4anvL6dxrfIkpUBcNgI5LHQQydno2BdCc4neMvsR79Og/viewform?usp=pp_url'">
   </noscript>
   <style>
-    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 40px; text-align: center; }
+    body {
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      margin: 40px;
+      text-align: center;
+    }
   </style>
 </head>
 <body>
   <p>Reindirizzamento al modulo in corso…</p>
   <p>Se non vieni reindirizzato automaticamente, <a id="fallback" href="#">clicca qui</a>.</p>
   <script>
-    // Aggiorna anche il link di fallback (utile se il blocco script è lento)
+    // Aggiorna anche il link di fallback
     (function () {
       const qs = new URLSearchParams(window.location.search);
       const nome = qs.get('nome') || '';
